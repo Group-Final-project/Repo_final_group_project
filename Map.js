@@ -16,7 +16,7 @@ require([
   });
 
   var myShapefile = new FeatureLayer({
-    url: "https://geotxst.maps.arcgis.com/apps/mapviewer/index.html?webmap=966ea824a67e4afdaa98fa1b223f3216"
+    url: "https://services8.arcgis.com/xvsG9Sjv8JeqcA3P/arcgis/rest/services/Capital_Metro_Shapefiles___JANUARY_2025/FeatureServer"
   });
 
   map.add(myShapefile);
