@@ -12,14 +12,21 @@ require([
   var view = new MapView({
     container: "viewDiv",
     map: map,
-    center: [-97.9, 29.9],
+    center: [-97.6, 30.25],
     zoom: 10
   });
 
   var CensusTract = new FeatureLayer({
-    url: "https://services1.arcgis.com/M68M8H7oABBFs1Pf/arcgis/rest/services/Austin_Census_Tract/FeatureServer",
+    url: "https://services1.arcgis.com/M68M8H7oABBFs1Pf/arcgis/rest/services/Austin_Census_Tract/FeatureServer/0",
     opacity: 0.5,
     title: "Population"
+  })
+
+  var Poverty = new FeatureLayer({
+    url: "https://services1.arcgis.com/M68M8H7oABBFs1Pf/arcgis/rest/services/Austin_Census_Tract/FeatureServer/1",
+    opacity: 0.5,
+    title: "Poverty",
+    visible: false
   })
 
 // bus stop of austin metro area
@@ -49,13 +56,13 @@ require([
       symbol: {
         type: "simple-marker",
         color: "blue",
-        size: 6,
+        size: 7,
         outline: {width: 0.5}
       }
     }
   })
 
-  map.addMany([ CensusTract, BusStop, RailStop ]);
+  map.addMany([ CensusTract, Poverty, BusStop, RailStop ]);
   var layerlist = new Layerlist({
     view: view,
     //below allows the legend to sit inside of the list to save room and readability
