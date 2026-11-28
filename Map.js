@@ -26,15 +26,33 @@ require([
   var BusStop = new FeatureLayer({
     url: "https://services8.arcgis.com/xvsG9Sjv8JeqcA3P/arcgis/rest/services/Capital_Metro_Shapefiles___JANUARY_2025/FeatureServer/0",
     title: "Bus stops",
-    definitionExpression: "STOP_TYPE <> 'Rail Station'"
+    definitionExpression: "STOP_TYPE <> 'Rail Station'",
+    renderer: {
+      type: "simple",
+      symbol: {
+        type: "simple-marker",
+        color: "orange",
+        size: 6,
+        outline: {color: "red", width: 0.5}
+      }
+    }
   })
 
   var RailStop = new FeatureLayer({
     url: "https://services8.arcgis.com/xvsG9Sjv8JeqcA3P/arcgis/rest/services/Capital_Metro_Shapefiles___JANUARY_2025/FeatureServer/0",
     title: "Rail Stations",
-    definitionExpression: "STOP_TYPE = 'Rail Station'"
+    definitionExpression: "STOP_TYPE = 'Rail Station'",
+    renderer: {
+      type: "simple",
+      symbol: {
+        type: "simple-marker",
+        color: "blue",
+        size: 6,
+        outline: {width: 0.5}
+      }
+    }
   })
-  
+
   map.addMany([ CensusTract, BusStop, RailStop ]);
   var layerlist = new Layerlist({
     view: view
