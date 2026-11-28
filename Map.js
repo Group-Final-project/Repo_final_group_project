@@ -1,8 +1,9 @@
 require([
   "esri/Map",
   "esri/views/MapView",
-  "esri/layers/FeatureLayer"
-], function(Map, MapView, FeatureLayer) {
+  "esri/layers/FeatureLayer",
+  "esri/widgets/LayerList"
+], function(Map, MapView, FeatureLayer, Layerlist) {
 
   var map = new Map({
     basemap: "topo-vector"
@@ -16,7 +17,8 @@ require([
   });
 
   var CensusTract = new FeatureLayer({
-    url: "https://services1.arcgis.com/M68M8H7oABBFs1Pf/arcgis/rest/services/Austin_Census_Tract/FeatureServer"
+    url: "https://services1.arcgis.com/M68M8H7oABBFs1Pf/arcgis/rest/services/Austin_Census_Tract/FeatureServer",
+    opacity: 0.5
   })
 
 // bus stop of austin metro area
@@ -25,5 +27,9 @@ require([
   })
 
   map.addMany([ CensusTract, myShapefile ]);
-
+  var layerlist = new Layerlist({
+    view: view
+  })
+  view.ui.add(layerlist, { position: "top-right"
+});
 });
