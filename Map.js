@@ -23,12 +23,19 @@ require([
   })
 
 // bus stop of austin metro area
-  var myShapefile = new FeatureLayer({
-    url: "https://services8.arcgis.com/xvsG9Sjv8JeqcA3P/arcgis/rest/services/Capital_Metro_Shapefiles___JANUARY_2025/FeatureServer",
-    title: "Bus stops"
+  var BusStop = new FeatureLayer({
+    url: "https://services8.arcgis.com/xvsG9Sjv8JeqcA3P/arcgis/rest/services/Capital_Metro_Shapefiles___JANUARY_2025/FeatureServer/0",
+    title: "Bus stops",
+    definitionExpression: "STOP_TYPE <> 'Rail Station'"
   })
 
-  map.addMany([ CensusTract, myShapefile ]);
+  var RailStop = new FeatureLayer({
+    url: "https://services8.arcgis.com/xvsG9Sjv8JeqcA3P/arcgis/rest/services/Capital_Metro_Shapefiles___JANUARY_2025/FeatureServer/0",
+    title: "Rail Stations",
+    definitionExpression: "STOP_TYPE = 'Rail Station'"
+  })
+  
+  map.addMany([ CensusTract, BusStop, RailStop ]);
   var layerlist = new Layerlist({
     view: view
   })
