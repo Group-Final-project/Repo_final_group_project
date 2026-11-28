@@ -18,12 +18,14 @@ require([
 
   var CensusTract = new FeatureLayer({
     url: "https://services1.arcgis.com/M68M8H7oABBFs1Pf/arcgis/rest/services/Austin_Census_Tract/FeatureServer",
-    opacity: 0.5
+    opacity: 0.5,
+    title: "Population"
   })
 
 // bus stop of austin metro area
   var myShapefile = new FeatureLayer({
-    url: "https://services8.arcgis.com/xvsG9Sjv8JeqcA3P/arcgis/rest/services/Capital_Metro_Shapefiles___JANUARY_2025/FeatureServer"
+    url: "https://services8.arcgis.com/xvsG9Sjv8JeqcA3P/arcgis/rest/services/Capital_Metro_Shapefiles___JANUARY_2025/FeatureServer",
+    title: "Bus stops"
   })
 
   map.addMany([ CensusTract, myShapefile ]);
