@@ -27,6 +27,7 @@ require([
     url: "https://services8.arcgis.com/xvsG9Sjv8JeqcA3P/arcgis/rest/services/Capital_Metro_Shapefiles___JANUARY_2025/FeatureServer/0",
     title: "Bus stops",
     definitionExpression: "STOP_TYPE <> 'Rail Station'",
+    //adjusts the symbology of the points
     renderer: {
       type: "simple",
       symbol: {
@@ -37,11 +38,12 @@ require([
       }
     }
   })
-
+//similar to the bus stops but shows the metro rail stops
   var RailStop = new FeatureLayer({
     url: "https://services8.arcgis.com/xvsG9Sjv8JeqcA3P/arcgis/rest/services/Capital_Metro_Shapefiles___JANUARY_2025/FeatureServer/0",
     title: "Rail Stations",
     definitionExpression: "STOP_TYPE = 'Rail Station'",
+    //adjusts the symbology of the points
     renderer: {
       type: "simple",
       symbol: {
@@ -55,7 +57,15 @@ require([
 
   map.addMany([ CensusTract, BusStop, RailStop ]);
   var layerlist = new Layerlist({
-    view: view
+    view: view,
+    //below allows the legend to sit inside of the list to save room and readability
+    listItemCreatedFunction: function(event) {
+      var item = event.item;
+      item.panel = {
+        content: "legend",
+        open: false
+      };
+    }
   })
   view.ui.add(layerlist, { position: "top-right"
 });
